@@ -15,7 +15,9 @@ o.chromaticEffect = 0
 
 o.guiMenu		= love.gui.newGui()
 o.chkFullscreen	= o.guiMenu.newCheckbox(startx, starty + 64 * 0, 191, 32, false, "Fullscreen")
-o.chkLarge		= o.guiMenu.newCheckbox(startx, starty + 64 * 1, 191, 32, false, "Large")
+
+o.comboResolution = o.guiMenu.newComboBox(startx, starty + 64 * 1, 191, 32, false, "Large")
+
 o.btnBack		= o.guiMenu.newButton(startx + 8, starty + 64 * 5 + 8, 176, 34, "Back")
 
 o.optionLarge = small
@@ -54,12 +56,12 @@ o.update = function(dt)
 		local success = love.window.setFullscreen( o.optionFullscreen )
 	end
 
-	if o.chkLarge.isHit() then
+	if o.comboResolution.isHit() then
 		love.sounds.playSound("sounds/button_pressed.wav")
 		local success
-		o.optionLarge = o.chkLarge.isChecked()
-		o.optionFullscreen = o.chkFullscreen.isChecked()
-		o.checkOptionsLarge()
+--		o.optionLarge = o.chkLarge.isChecked()
+--		o.optionFullscreen = o.chkFullscreen.isChecked()
+--		o.checkOptionsLarge()
 	end
 
 	if o.btnBack.isHit() or love.keyboard.isDown("escape") then
@@ -107,7 +109,7 @@ o.refreshScreenSize = function()
 	local starty = 80
 
 	o.chkFullscreen.setPosition(startx, starty + 64 * 0)
-	o.chkLarge.setPosition(startx, starty + 64 * 1)
+	o.comboResolution.setPosition(startx, starty + 64 * 1)
 	o.btnBack.setPosition(startx + 8, starty + 64 * 5)
 end
 

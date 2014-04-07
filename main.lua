@@ -63,7 +63,7 @@ function love.load()
 	loadOptions()
 	FONT = G.newFont(32)
 
-	currentgamestate = 12  -- TODO: make "skip intro" an option
+	currentgamestate = 9  -- FIXME: this is a temporary development shortcut; going straight to display options
 	love.turris.reinit()
 
 	stateMainMenu.setVersion("v0.6.1")

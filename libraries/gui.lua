@@ -4,6 +4,7 @@ love.gui = {}
 require "libraries/button"
 require "libraries/checkbox"
 require "libraries/radiobutton"
+require "libraries/comboBox"
 
 function love.gui.newGui()
 	local o = {}
@@ -112,6 +113,14 @@ function love.gui.newGui()
 	--Return new image radiobutton
 	o.newImageRadioButton = function(x, y, width, height, img)
 		o.elements[#o.elements + 1] = love.gui.newRadioButton(x, y, width, height)
+		o.elements[#o.elements].setImage(img)
+		o.elements[#o.elements].parent = o
+
+		return o.elements[#o.elements]
+	end
+	--Return new comboBox
+	o.newComboBox = function(x, y, width, height, img)
+		o.elements[#o.elements + 1] = love.gui.newComboBox(x, y, width, height)
 		o.elements[#o.elements].setImage(img)
 		o.elements[#o.elements].parent = o
 
