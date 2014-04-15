@@ -214,5 +214,4 @@ end
 
 function love.mousereleased(x, y, key)
 	buttonDetected = 0
->>>>>>> master:love2d/main.lua
 end
