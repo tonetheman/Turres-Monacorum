@@ -50,7 +50,7 @@ function love.gui.newGui()
 						else
 							o.elements[i].hit = true
 							o.elements[i].down = true
-							
+
 							-- TODO this should be delegated to each object
 							if o.elements[i].type == "checkbox" then
 								o.elements[i].checked = not o.elements[i].checked
@@ -62,6 +62,10 @@ function love.gui.newGui()
 							end
 						end
 					else
+						-- TODO this should be delegated to each object
+						if o.elements[i].type =="comboBox" then
+							o.elements[i].deactivate()
+						end
 						o.elements[i].hit = false
 						o.elements[i].down = false
 					end
