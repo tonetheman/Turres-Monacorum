@@ -65,7 +65,7 @@ function love.load()
 	FONT = G.newFont(32)
 	FONT_SMALL = G.newFont(24)
 
-	currentgamestate = 12  -- TODO: make "skip intro" an option
+	currentgamestate = 9  -- TODO: make "skip intro" an option
 
 	stateMainMenu.setVersion("v0.6.2")
 end
