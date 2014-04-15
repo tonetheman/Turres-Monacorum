@@ -55,6 +55,8 @@ function love.gui.newGui()
 							elseif o.elements[i].type == "radiobutton" then
 								o.flushRadioButtons()
 								o.elements[i].checked = true
+							elseif o.elements[i].type =="comboBox" then
+								o.elements[i].activate()
 							end
 						end
 					else

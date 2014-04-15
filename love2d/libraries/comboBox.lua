@@ -23,6 +23,7 @@ function love.gui.newComboBox(x, y, width, height, list)
 	o.enabled 		= true
 	o.visible 		= true
 	o.checked		= false
+	o.active = false
 	o.hover 		= false
 	o.hit			= false
 	o.down			= true
@@ -86,7 +87,12 @@ function love.gui.newComboBox(x, y, width, height, list)
 					G.printf(o.text, o.x + 2, o.y + 6, o.width, "center")
 					G.setBlendMode("additive")
 					G.setColor(color[1], color[2], color[3], color[4])
-					G.printf(o.text, o.x, o.y + 4, o.width, "center")
+					--TMP TODO
+					if o.active then
+						G.printf("Hurz", o.x, o.y + 4, o.width, "center")
+					else
+						G.printf(o.text, o.x, o.y + 4, o.width, "center")
+					end
 				end
 
 				G.setBlendMode("alpha")
@@ -260,6 +266,14 @@ function love.gui.newComboBox(x, y, width, height, list)
 	--Hide
 	o.hide = function()
 		o.visible = false
+	end
+
+	o.activate = function()
+		o.active = true
+	end
+
+	o.deactivate = function()
+		o.active = false
 	end
 
 	return o
