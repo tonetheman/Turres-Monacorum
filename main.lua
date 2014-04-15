@@ -1,5 +1,3 @@
-require "postshader"
-require "light"
 require "sound"
 require "TESound"
 
@@ -22,11 +20,11 @@ end
 function love.keypressed(key, code)
 	
 	--Start Sound
-	if key == "1" then
-		love.sounds.addSound("sounds/Explosion.wav")
-	end
+--	if key == "1" then
+--		love.sounds.addSound("sounds/Explosion.wav")
+--	end
 	
 	if key == "2" then
-		love.sounds.background("sounds/Explosion.wav")
+		love.sounds.background("sounds/Chiptune_2step_mp3.mp3")
 	end
 end

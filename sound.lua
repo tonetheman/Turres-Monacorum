@@ -4,7 +4,7 @@ LOVE_SOUND_SOUNDVOLLUME		= 0.8
 love.sounds = {}
 
 
-	
+
 --Functions for playing sounds
 
 --Play a Sound from
@@ -25,6 +25,5 @@ end
 --Sets the Background Volume
 --@param volume from 0 to 1
 function setBackgroundVolume(volume)
-{
 	TEsound.volume("background", volume)
-}
+end
