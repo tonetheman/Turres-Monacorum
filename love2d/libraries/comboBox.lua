@@ -91,6 +91,9 @@ function love.gui.newComboBox(x, y, width, height, list)
 					if o.active then
 						G.printf(list[1], o.x, o.y + 4, o.width, "center")
 						G.printf(list[2], o.x, o.y + 36, o.width, "center")
+						G.setColor(color[1], color[2], color[3], color[4])
+						G.setLineWidth(2)
+						G.rectangle("line", o.x, o.y+32, o.width, o.height)
 					else
 						G.printf(o.text, o.x, o.y + 4, o.width, "center")
 					end
