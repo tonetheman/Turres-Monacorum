@@ -35,6 +35,7 @@ function love.gui.newGui()
 			o.hit = false
 			o.down = false
 		end
+		--TODO all this needs to be more event-driven
 
 		--Check if Mouse is over an element
 		for i = 1, #o.elements do
@@ -63,7 +64,7 @@ function love.gui.newGui()
 						end
 					else
 						-- TODO this should be delegated to each object
-						if o.elements[i].type =="comboBox" then
+						if o.elements[i].type =="comboBox" then --letting go within the original bounds.
 							o.elements[i].deactivate()
 						end
 						o.elements[i].hit = false

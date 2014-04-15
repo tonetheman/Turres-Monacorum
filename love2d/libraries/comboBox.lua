@@ -89,7 +89,8 @@ function love.gui.newComboBox(x, y, width, height, list)
 					G.setColor(color[1], color[2], color[3], color[4])
 					--TMP TODO
 					if o.active then
-						G.printf("Hurz", o.x, o.y + 4, o.width, "center")
+						G.printf(list[1], o.x, o.y + 4, o.width, "center")
+						G.printf(list[2], o.x, o.y + 36, o.width, "center")
 					else
 						G.printf(o.text, o.x, o.y + 4, o.width, "center")
 					end

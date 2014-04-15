@@ -55,7 +55,7 @@ o.update = function(dt)
 
 	if o.comboLarge.isHit() then
 		--love.sounds.playSound("sounds/button_pressed.wav")
-		print "hello"
+		--print "hello"
 --		o.optionLarge = o.chkLarge.isChecked()
 --		o.optionFullscreen = o.chkFullscreen.isChecked()
 --		o.checkOptionsLarge()
