@@ -50,6 +50,8 @@ function love.gui.newGui()
 						else
 							o.elements[i].hit = true
 							o.elements[i].down = true
+							
+							-- TODO this should be delegated to each object
 							if o.elements[i].type == "checkbox" then
 								o.elements[i].checked = not o.elements[i].checked
 							elseif o.elements[i].type == "radiobutton" then
