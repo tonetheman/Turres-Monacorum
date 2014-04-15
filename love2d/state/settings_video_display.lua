@@ -15,7 +15,7 @@ o.chromaticEffect = 0
 
 o.guiMenu		= love.gui.newGui()
 o.chkFullscreen	= o.guiMenu.newCheckbox(startx, starty + 64 * 0, 191, 32, false, "Fullscreen")
-o.comboLarge		= o.guiMenu.newComboBox(startx, starty + 64 * 1, 191, 32, {"Large","Small"})
+o.comboLarge		= o.guiMenu.newComboBox(startx, starty + 64 * 1, 191, 32, {"1920x1080","800x600"})
 o.btnBack		= o.guiMenu.newButton(startx + 8, starty + 64 * 5 + 8, 176, 34, "Back")
 
 o.optionLarge = small
@@ -54,11 +54,11 @@ o.update = function(dt)
 	end
 
 	if o.comboLarge.isHit() then
-		--love.sounds.playSound("sounds/button_pressed.wav")
-		--print "hello"
---		o.optionLarge = o.chkLarge.isChecked()
---		o.optionFullscreen = o.chkFullscreen.isChecked()
---		o.checkOptionsLarge()
+	--love.sounds.playSound("sounds/button_pressed.wav")
+	--print "hello"
+	--		o.optionLarge = o.chkLarge.isChecked()
+	--		o.optionFullscreen = o.chkFullscreen.isChecked()
+	--		o.checkOptionsLarge()
 	end
 
 	if o.btnBack.isHit() or love.keyboard.isDown("escape") then
