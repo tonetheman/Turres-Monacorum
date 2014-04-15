@@ -1,5 +1,5 @@
---Button class
--- This Class is a Button with all its Attributes
+--ComboBox class
+-- This Class is a ComboBox with all its Attributes
 -- @param x
 -- @param y
 -- @param width
@@ -7,17 +7,17 @@
 -- @param name The Name of the button
 -- @param path for an Image
 
-function love.gui.newComboBox(x, y, width, height, text)
+function love.gui.newComboBox(x, y, width, height, list)
 	local o = {}
 
 	--Attribute
 	o.parent = nil
-	o.type			= "radiobutton"
+	o.type			= "comboBox"
 	o.x				= x or 0
 	o.y				= y or 0
 	o.width 		= width or 64
 	o.height 		= height or 16
-	o.text 			= text
+	o.text 			= list[1]
 	o.textX			= nil
 	o.textY			= nil
 	o.enabled 		= true
@@ -80,7 +80,7 @@ function love.gui.newComboBox(x, y, width, height, text)
 					G.printf(o.text, o.x + o.textX + 2, o.y + o.textY + 6, o.width, "left")
 					G.setBlendMode("additive")
 					G.setColor(color[1], color[2], color[3], color[4])
-					G.printf(o.text, o.x + o.textX, o.y + o.textY + 4, o.width, "left")					
+					G.printf(o.text, o.x + o.textX, o.y + o.textY + 4, o.width, "left")
 				else
 					G.setColor(0, 0, 0, 95)
 					G.printf(o.text, o.x + 2, o.y + 6, o.width, "center")
@@ -111,7 +111,7 @@ function love.gui.newComboBox(x, y, width, height, text)
 
 	--Return type
 	o.getType = function()
-		return "radiobutton"
+		return "comboBox"
 	end
 
 	--Return x position

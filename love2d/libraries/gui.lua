@@ -119,8 +119,8 @@ function love.gui.newGui()
 		return o.elements[#o.elements]
 	end
 	--Return new comboBox
-	o.newComboBox = function(x, y, width, height, img)
-		o.elements[#o.elements + 1] = love.gui.newComboBox(x, y, width, height)
+	o.newComboBox = function(x, y, width, height, list)
+		o.elements[#o.elements + 1] = love.gui.newComboBox(x, y, width, height, list)
 		o.elements[#o.elements].setImage(img)
 		o.elements[#o.elements].parent = o
 
