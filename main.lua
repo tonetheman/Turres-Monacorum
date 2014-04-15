@@ -25,6 +25,6 @@ function love.keypressed(key, code)
 --	end
 	
 	if key == "2" then
-		love.sounds.background("sounds/Chiptune_2step_mp3.mp3")
+		love.sounds.background("sounds/looptest.ogg")
 	end
 end
