@@ -67,14 +67,15 @@ function love.gui.newGui()
 							elseif o.elements[i].type =="comboBox" then
 								if not o.combotrack then
 									print (i, "down")
+									o.elements[i].activate()
+									o.comboTrack = i
 								end
-								o.elements[i].activate()
-								o.comboTrack = i
 							end
 						end
 					else
 						if (o.comboTrack)then
 							print (o.comboTrack,": up")
+							o.elements[o.comboTrack].deactivate()
 							o.comboTrack = nil
 						end
 						-- TODO this should be delegated to each object
@@ -93,6 +94,7 @@ function love.gui.newGui()
 		end
 		if not love.mouse.isDown("l") and o.comboTrack then
 			print (o.comboTrack, "out")
+			o.elements[o.comboTrack].deactivate()
 			o.comboTrack = nil
 		end
 
