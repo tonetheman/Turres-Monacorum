@@ -288,7 +288,7 @@ function love.gui.newComboBox(x, y, width, height, list)
 
 	o.select = function(mx, my)
 		local selection = 1+math.floor((my-o.y)/BOUNDING_HEIGHT)
-		print ("sel", selection)
+		print ("sel", o.list[selection])
 	end
 
 	return o
