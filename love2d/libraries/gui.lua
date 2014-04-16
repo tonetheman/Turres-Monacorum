@@ -14,6 +14,7 @@ function love.gui.newGui()
 	o.hit = false
 	o.down = true
 	o.timer = 0
+	o.comboTrack = false
 
 	--Update gui
 	o.update = function(dt)
@@ -35,6 +36,7 @@ function love.gui.newGui()
 			o.hit = false
 			o.down = false
 		end
+
 		--TODO all this needs to be more event-driven
 
 		--Check if Mouse is over an element
@@ -50,7 +52,6 @@ function love.gui.newGui()
 					o.hover = false
 					o.elements[i].hover = true
 					if love.mouse.isDown("l") then
-						print "down"
 						if o.elements[i].down then
 							o.elements[i].hit = false
 						else
@@ -64,11 +65,18 @@ function love.gui.newGui()
 								o.flushRadioButtons()
 								o.elements[i].checked = true
 							elseif o.elements[i].type =="comboBox" then
+								if not o.combotrack then
+									print "down"
+								end
 								o.elements[i].activate()
+								o.comboTrack = true
 							end
 						end
 					else
-						print "up"
+						if (o.comboTrack)then
+							print "up1"
+							o.comboTrack = false
+						end
 						-- TODO this should be delegated to each object
 						if o.elements[i].type =="comboBox" then --letting go within the original bounds.
 							o.elements[i].deactivate()
@@ -83,8 +91,13 @@ function love.gui.newGui()
 				end
 			end
 		end
-	end
+		if not love.mouse.isDown("l") and o.comboTrack then
+			print "out"
+			o.comboTrack = false
+		end
 
+
+	end
 	--Draw gui
 	o.draw = function(dt)
 		for i = 1, #o.elements do
