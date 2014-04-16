@@ -40,8 +40,18 @@ o.update = function(dt)
 	end
 end
 
-o.quote = "War...war never changes."
-o.source = "-Fallout"
+local quoterandomizer = love.math.newRandomGenerator(os.time()*os.clock())
+for i=1,20 do -- the value 1 will be considered sufficiently random otherwise
+	quoterandomizer:random()
+end
+local quotes ={"War...war never changes.","Fallout","Always put a tower where the creeps want to go!","The Art Of Tower Defense","Haskell <3", "???",
+	"How about I always give you the same random number?","love.math.random()","Thou shalt not pass through my towers, foul creatures!","William S.",
+	"Please stand by while we think of more quotes...","the developers","Fallback quote. It's not a bug, it's a feature.", "Unknown Programmer",
+	"Please use data-driven development ;-)","Nicolai"} --TODO: next step is to get these from an external file
+local quoteno = quoterandomizer:random(1,#quotes/2) -- The second value will always have to be as high as the amount of quotes (the random number is not perfect, though)
+local quoteIndex = 1+(quoteno-1)*2
+o.quote = quotes[quoteIndex]
+o.source = quotes[quoteIndex+1]
 
 o.draw = function()
 	if o.phase == 1 then
@@ -73,7 +83,7 @@ o.draw = function()
 		love.graphics.printf(o.quote, love.window.getWidth() * 0.5 - 128, love.window.getHeight() * 0.5 - 16, love.window.getWidth() * 0.5, "left")
 		love.graphics.printf(o.source, love.window.getWidth() * 0.5 + 64, love.window.getHeight() * 0.5 + 16, love.window.getWidth() * 0.5, "left")
 
-		if math.random(0, love.timer.getFPS() * 5) == 0 then
+		if math.random(0, love.timer.getFPS() * 8) == 0 then
 			o.chromaticEffect = math.random(0, 5) * 0.1
 		end
 
