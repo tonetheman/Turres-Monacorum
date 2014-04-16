@@ -75,6 +75,7 @@ function love.gui.newGui()
 					else
 						if (o.comboTrack)then
 							print (o.comboTrack,": up")
+							o.elements[o.comboTrack].select(mx,my)
 							o.elements[o.comboTrack].deactivate()
 							o.comboTrack = nil
 						end

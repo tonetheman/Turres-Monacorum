@@ -6,7 +6,7 @@
 -- @param height
 -- @param name The Name of the button
 -- @param path for an Image
-
+local BOUNDING_HEIGHT = 32
 function love.gui.newComboBox(x, y, width, height, list)
 	local o = {}
 
@@ -16,7 +16,7 @@ function love.gui.newComboBox(x, y, width, height, list)
 	o.x				= x or 0
 	o.y				= y or 0
 	o.width 		= width or 64
-	o.height 		= height or 16
+	o.height 		= height or BOUNDING_HEIGHT
 	o.boundingHeight = o.height
 	o.boundingWidth = o.width
 	o.list = list
@@ -95,8 +95,8 @@ function love.gui.newComboBox(x, y, width, height, list)
 						G.setColor(color[1], color[2], color[3], color[4])
 						G.setLineWidth(2)
 						for i = 1, #o.list do
-							G.printf(o.list[i], o.x, o.y + 4+32*(i-1), o.width, "center")
-							G.rectangle("line", o.x, o.y+32*(i-1), o.width, o.height)
+							G.printf(o.list[i], o.x, o.y + 4+BOUNDING_HEIGHT*(i-1), o.width, "center")
+							G.rectangle("line", o.x, o.y+BOUNDING_HEIGHT*(i-1), o.width, o.height)
 						end
 					else
 						G.printf(o.text, o.x, o.y + 4, o.width, "center")
@@ -284,6 +284,11 @@ function love.gui.newComboBox(x, y, width, height, list)
 	o.deactivate = function()
 		o.active = false
 		o.boundingHeight = o.height
+	end
+
+	o.select = function(mx, my)
+		local selection = 1+math.floor((my-o.y)/BOUNDING_HEIGHT)
+		print ("sel", selection)
 	end
 
 	return o
