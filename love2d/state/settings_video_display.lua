@@ -15,7 +15,7 @@ o.chromaticEffect = 0
 
 o.guiMenu		= love.gui.newGui()
 o.chkFullscreen	= o.guiMenu.newCheckbox(startx, starty + 64 * 0, 191, 32, false, "Fullscreen")
-o.comboLarge		= o.guiMenu.newComboBox(startx, starty + 64 * 1, 191, 32, {"1920x1080","800x600", "640x480"})
+o.comboLarge		= o.guiMenu.newComboBox(startx, starty + 64 * 1, 191, 32, {"1920x1080","1280x720","800x600", "640x480"})
 o.btnBack		= o.guiMenu.newButton(startx + 8, starty + 64 * 5 + 8, 176, 34, "Back")
 
 o.optionLarge = small
@@ -24,6 +24,7 @@ o.reset = function()
 	o.guiMenu.flushMouse()
 end
 o.checkOptionsLarge = function()
+	--FIXME make this work with the combobox
 	if o.optionLarge then
 		success = love.window.setMode( 1280, 720, {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
 	else
