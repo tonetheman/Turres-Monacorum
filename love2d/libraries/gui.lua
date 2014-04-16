@@ -39,13 +39,18 @@ function love.gui.newGui()
 
 		--Check if Mouse is over an element
 		for i = 1, #o.elements do
-			o.elements[i].update(dt)
+			local e = o.elements[i]
+			e.update(dt)
 
-			if o.elements[i].enabled then
-				if mx >= o.elements[i].x and mx <= o.elements[i].x + o.elements[i].width and my >= o.elements[i].y and my <= o.elements[i].y + o.elements[i].height then
+			if e.enabled then
+				local w = e.boundingWidth or e.width
+				local h = e.boundingHeight or e.height
+				if mx >= o.elements[i].x and mx <= o.elements[i].x + w and my >= o.elements[i].y and my <= o.elements[i].y + h then
+
 					o.hover = false
 					o.elements[i].hover = true
 					if love.mouse.isDown("l") then
+						print "down"
 						if o.elements[i].down then
 							o.elements[i].hit = false
 						else
@@ -63,6 +68,7 @@ function love.gui.newGui()
 							end
 						end
 					else
+						print "up"
 						-- TODO this should be delegated to each object
 						if o.elements[i].type =="comboBox" then --letting go within the original bounds.
 							o.elements[i].deactivate()

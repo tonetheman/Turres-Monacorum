@@ -17,6 +17,9 @@ function love.gui.newComboBox(x, y, width, height, list)
 	o.y				= y or 0
 	o.width 		= width or 64
 	o.height 		= height or 16
+	o.boundingHeight = o.height
+	o.boundingWidth = o.width
+	o.list = list
 	o.text 			= list[1]
 	o.textX			= nil
 	o.textY			= nil
@@ -91,8 +94,8 @@ function love.gui.newComboBox(x, y, width, height, list)
 					if o.active then
 						G.setColor(color[1], color[2], color[3], color[4])
 						G.setLineWidth(2)
-						for i = 1, #list do
-							G.printf(list[i], o.x, o.y + 4+32*(i-1), o.width, "center")
+						for i = 1, #o.list do
+							G.printf(o.list[i], o.x, o.y + 4+32*(i-1), o.width, "center")
 							G.rectangle("line", o.x, o.y+32*(i-1), o.width, o.height)
 						end
 					else
@@ -275,10 +278,12 @@ function love.gui.newComboBox(x, y, width, height, list)
 
 	o.activate = function()
 		o.active = true
+		o.boundingHeight = o.height * #o.list
 	end
 
 	o.deactivate = function()
 		o.active = false
+		o.boundingHeight = o.height
 	end
 
 	return o
