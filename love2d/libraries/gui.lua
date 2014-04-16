@@ -14,7 +14,7 @@ function love.gui.newGui()
 	o.hit = false
 	o.down = true
 	o.timer = 0
-	o.comboTrack = false
+	o.comboTrack = nil
 
 	--Update gui
 	o.update = function(dt)
@@ -66,16 +66,16 @@ function love.gui.newGui()
 								o.elements[i].checked = true
 							elseif o.elements[i].type =="comboBox" then
 								if not o.combotrack then
-									print "down"
+									print (i, "down")
 								end
 								o.elements[i].activate()
-								o.comboTrack = true
+								o.comboTrack = i
 							end
 						end
 					else
 						if (o.comboTrack)then
-							print "up1"
-							o.comboTrack = false
+							print (o.comboTrack,": up")
+							o.comboTrack = nil
 						end
 						-- TODO this should be delegated to each object
 						if o.elements[i].type =="comboBox" then --letting go within the original bounds.
@@ -92,8 +92,8 @@ function love.gui.newGui()
 			end
 		end
 		if not love.mouse.isDown("l") and o.comboTrack then
-			print "out"
-			o.comboTrack = false
+			print (o.comboTrack, "out")
+			o.comboTrack = nil
 		end
 
 
