@@ -15,11 +15,31 @@ o.chromaticEffect = 0
 
 o.guiMenu		= love.gui.newGui()
 o.chkFullscreen	= o.guiMenu.newCheckbox(startx, starty + 64 * 0, 191, 32, false, "Fullscreen")
-local resolutionStrings = {"1920x1080","1280x720","800x600", "640x480"}
-o.comboLarge		= o.guiMenu.newComboBox(startx, starty + 64 * 1, 191, 32, resolutionStrings)
+o.resolutionStrings = {"1920x1080", "1280x720", "800x600", "640x480"}
+
+local width, height, flags = love.window.getMode()
+local tmp = width.."x"..height
+local found = 0
+for i = 1, #o.resolutionStrings do
+	if o.resolutionStrings[i] == tmp then
+		print ("found: "..i)
+		found = i
+	end
+end
+if found == 0 then
+	table.insert(o.resolutionStrings,1,tmp)
+	found = 1
+end
+o.comboLarge		= o.guiMenu.newComboBox(startx, starty + 64 * 1, 191, 32, o.resolutionStrings)
+for i = 1, #o.resolutionStrings do
+	print (o.resolutionStrings[i])
+end
+o.comboLarge.updateSelection(found)
+o.optionLarge = o.resolutionStrings[found]
+
 o.btnBack		= o.guiMenu.newButton(startx + 8, starty + 64 * 5 + 8, 176, 34, "Back")
 
-o.optionLarge = resolutionStrings[1]
+
 o.holding = false
 
 o.reset = function()
@@ -34,8 +54,6 @@ o.checkOptionsLarge = function()
 		i = i + 1
 	end
 	--TODO we are assuming that x will always have 2 elements. This is unsafe to assume.
-	print (numbers[1])
-	print (numbers[2])
 	local width, height, flags = love.window.getMode()
 	if (numbers[1] ~= width and numbers[2] ~= height)then
 		local success = love.window.setMode( numbers[1], numbers[2], {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option

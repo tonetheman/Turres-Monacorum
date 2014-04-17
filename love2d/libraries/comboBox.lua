@@ -288,15 +288,18 @@ function love.gui.newComboBox(x, y, width, height, list)
 		o.active = false
 		o.boundingHeight = o.height
 	end
-
-	o.select = function(mx, my)
-		local tmpSelectionIndex = 1+math.floor((my-o.y)/BOUNDING_HEIGHT)
-
-		--swap elements at 1 and at tmpSelectionIndex
-		local tmpSelection = o.list[tmpSelectionIndex]
-		o.list[tmpSelectionIndex] = o.list[1]
+	o.updateSelection = function(i)
+		--swap elements at 1 and at i
+		local tmpSelection = o.list[i]
+		o.list[i] = o.list[1]
 		o.list[1] = tmpSelection
 		--print ("sel", o.list[o.selection])
+
+	end
+	o.select = function(mx, my)
+		local tmpSelectionIndex = 1+math.floor((my-o.y)/BOUNDING_HEIGHT)
+		o.updateSelection(tmpSelectionIndex)
+
 	end
 
 	o.getSelection = function()
