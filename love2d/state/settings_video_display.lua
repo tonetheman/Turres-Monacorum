@@ -29,6 +29,10 @@ o.checkOptionsLarge = function()
 	--FIXME make this work with the combobox
 	local success = false
 	print (o.optionLarge)
+	local x = o.optionLarge:gmatch('%d+')
+	for i in x do
+		print (i)
+	end
 	--	if o.optionLarge then
 	--		success = love.window.setMode( 1280, 720, {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
 	--	else
