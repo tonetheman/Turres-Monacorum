@@ -36,17 +36,20 @@ o.checkOptionsLarge = function()
 	--TODO we are assuming that x will always have 2 elements. This is unsafe to assume.
 	print (numbers[1])
 	print (numbers[2])
-	local success = love.window.setMode( numbers[1], numbers[2], {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
-	if success then
-		love.postshader.refreshScreenSize()
-		lightWorld.refreshScreenSize()
-		stateMainMenu.refreshScreenSize()
-		stateWorldMenu.refreshScreenSize()
-		stateSettings.refreshScreenSize()
-		stateSettingsVideo.refreshScreenSize()
-		stateSettingsVideoShaders.refreshScreenSize()
-		stateSettingsVideoDisplay.refreshScreenSize()
-		stateSettingsAudio.refreshScreenSize()
+	local width, height, flags = love.window.getMode()
+	if (numbers[1] ~= width and numbers[2] ~= height)then
+		local success = love.window.setMode( numbers[1], numbers[2], {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
+		if success then
+			love.postshader.refreshScreenSize()
+			lightWorld.refreshScreenSize()
+			stateMainMenu.refreshScreenSize()
+			stateWorldMenu.refreshScreenSize()
+			stateSettings.refreshScreenSize()
+			stateSettingsVideo.refreshScreenSize()
+			stateSettingsVideoShaders.refreshScreenSize()
+			stateSettingsVideoDisplay.refreshScreenSize()
+			stateSettingsAudio.refreshScreenSize()
+		end
 	end
 end
 o.update = function(dt)
@@ -66,7 +69,7 @@ o.update = function(dt)
 	end
 
 	if not o.comboLarge.active and o.holding then
-		print "releasing"
+		--print "releasing"
 		o.optionLarge = o.comboLarge.getSelection()
 		o.checkOptionsLarge()
 		o.holding = false
