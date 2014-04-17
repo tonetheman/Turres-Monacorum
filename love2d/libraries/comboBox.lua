@@ -20,7 +20,8 @@ function love.gui.newComboBox(x, y, width, height, list)
 	o.boundingHeight = o.height
 	o.boundingWidth = o.width
 	o.list = list
-	o.text 			= list[1]
+	o.selection = 1
+	o.text 			= list[o.selection]
 	o.textX			= nil
 	o.textY			= nil
 	o.enabled 		= true
@@ -87,19 +88,18 @@ function love.gui.newComboBox(x, y, width, height, list)
 					G.printf(o.text, o.x + o.textX, o.y + o.textY + 4, o.width, "left")
 				else
 					G.setColor(0, 0, 0, 95)
-					G.printf(o.text, o.x + 2, o.y + 6, o.width, "center")
+					--G.printf(o.text, o.x + 2, o.y + 6, o.width, "center")
 					G.setBlendMode("additive")
 					G.setColor(color[1], color[2], color[3], color[4])
 					--TMP TODO
 					if o.active then
-						G.setColor(color[1], color[2], color[3], color[4])
 						G.setLineWidth(2)
 						for i = 1, #o.list do
 							G.printf(o.list[i], o.x, o.y + 4+BOUNDING_HEIGHT*(i-1), o.width, "center")
 							G.rectangle("line", o.x, o.y+BOUNDING_HEIGHT*(i-1), o.width, o.height)
 						end
 					else
-						G.printf(o.text, o.x, o.y + 4, o.width, "center")
+						G.printf(o.list[o.selection], o.x, o.y + 4, o.width, "center")
 					end
 				end
 
@@ -287,8 +287,8 @@ function love.gui.newComboBox(x, y, width, height, list)
 	end
 
 	o.select = function(mx, my)
-		local selection = 1+math.floor((my-o.y)/BOUNDING_HEIGHT)
-		print ("sel", o.list[selection])
+		o.selection = 1+math.floor((my-o.y)/BOUNDING_HEIGHT)
+		print ("sel", o.list[o.selection])
 	end
 
 	return o

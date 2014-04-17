@@ -14,7 +14,7 @@ function love.gui.newGui()
 	o.hit = false
 	o.down = true
 	o.timer = 0
-	o.comboTrack = nil
+	o.comboTrack = nil --TODO: just using one variable means we can currently only use one combo per page/state/ gui object.
 
 	--Update gui
 	o.update = function(dt)
@@ -66,7 +66,7 @@ function love.gui.newGui()
 								o.elements[i].checked = true
 							elseif o.elements[i].type =="comboBox" then
 								if not o.combotrack then
-									print (i, "down")
+									--print (i, "down")
 									o.elements[i].activate()
 									o.comboTrack = i
 								end
@@ -74,7 +74,7 @@ function love.gui.newGui()
 						end
 					else
 						if (o.comboTrack)then
-							print (o.comboTrack,": up")
+							--print (o.comboTrack,": up")
 							o.elements[o.comboTrack].select(mx,my)
 							o.elements[o.comboTrack].deactivate()
 							o.comboTrack = nil
@@ -94,7 +94,7 @@ function love.gui.newGui()
 			end
 		end
 		if not love.mouse.isDown("l") and o.comboTrack then
-			print (o.comboTrack, "out")
+			--print (o.comboTrack, "out")
 			o.elements[o.comboTrack].deactivate()
 			o.comboTrack = nil
 		end
