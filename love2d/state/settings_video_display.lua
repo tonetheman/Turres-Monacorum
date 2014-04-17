@@ -18,18 +18,21 @@ o.chkFullscreen	= o.guiMenu.newCheckbox(startx, starty + 64 * 0, 191, 32, false,
 o.comboLarge		= o.guiMenu.newComboBox(startx, starty + 64 * 1, 191, 32, {"1920x1080","1280x720","800x600", "640x480"})
 o.btnBack		= o.guiMenu.newButton(startx + 8, starty + 64 * 5 + 8, 176, 34, "Back")
 
-o.optionLarge = small
+o.optionLarge = "1920x1080"
+o.holding = false
 
 o.reset = function()
 	o.guiMenu.flushMouse()
 end
 o.checkOptionsLarge = function()
 	--FIXME make this work with the combobox
-	if o.optionLarge then
-		success = love.window.setMode( 1280, 720, {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
-	else
-		success = love.window.setMode( 800, 600 ,{fullscreen=o.optionFullscreen,vsync=false})
-	end
+	local success = false
+	print (o.optionLarge)
+	--	if o.optionLarge then
+	--		success = love.window.setMode( 1280, 720, {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
+	--	else
+	--		success = love.window.setMode( 800, 600 ,{fullscreen=o.optionFullscreen,vsync=false})
+	--	end
 	if success then
 		love.postshader.refreshScreenSize()
 		lightWorld.refreshScreenSize()
@@ -54,13 +57,17 @@ o.update = function(dt)
 		local success = love.window.setFullscreen( o.optionFullscreen )
 	end
 
-	if o.comboLarge.isHit() then
-	--love.sounds.playSound("sounds/button_pressed.wav")
-	--print "hello"
-	--		o.optionLarge = o.chkLarge.isChecked()
-	--		o.optionFullscreen = o.chkFullscreen.isChecked()
-	--		o.checkOptionsLarge()
+	if o.comboLarge.active then
+		o.holding = true
 	end
+
+	if not o.comboLarge.active and o.holding then
+		print "releasing"
+		o.optionLarge = o.comboLarge.getSelection()
+		o.checkOptionsLarge()
+		o.holding = false
+	end
+
 
 	if o.btnBack.isHit() or love.keyboard.isDown("escape") then
 		love.sounds.playSound("sounds/button_pressed.wav")
