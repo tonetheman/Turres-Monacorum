@@ -26,18 +26,17 @@ o.reset = function()
 	o.guiMenu.flushMouse()
 end
 o.checkOptionsLarge = function()
-	--FIXME make this work with the combobox
-	local success = false
-	print (o.optionLarge)
-	local x = o.optionLarge:gmatch('%d+')
-	for i in x do
-		print (i)
+	local iterator = o.optionLarge:gmatch('%d+')
+	local numbers = {}
+	local i = 1
+	for number in iterator do
+		numbers[i] = tonumber(number)
+		i = i + 1
 	end
-	--	if o.optionLarge then
-	--		success = love.window.setMode( 1280, 720, {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
-	--	else
-	--		success = love.window.setMode( 800, 600 ,{fullscreen=o.optionFullscreen,vsync=false})
-	--	end
+	--TODO we are assuming that x will always have 2 elements. This is unsafe to assume.
+	print (numbers[1])
+	print (numbers[2])
+	local success = false-- love.window.setMode( x[1], x[2], {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
 	if success then
 		love.postshader.refreshScreenSize()
 		lightWorld.refreshScreenSize()
