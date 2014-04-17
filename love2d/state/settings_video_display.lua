@@ -36,7 +36,7 @@ o.checkOptionsLarge = function()
 	--TODO we are assuming that x will always have 2 elements. This is unsafe to assume.
 	print (numbers[1])
 	print (numbers[2])
-	local success = false-- love.window.setMode( x[1], x[2], {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
+	local success = love.window.setMode( numbers[1], numbers[2], {fullscreen=o.optionFullscreen,vsync=false})--TODO: make vsync an option
 	if success then
 		love.postshader.refreshScreenSize()
 		lightWorld.refreshScreenSize()
@@ -118,7 +118,7 @@ o.refreshScreenSize = function()
 	local starty = 80
 
 	o.chkFullscreen.setPosition(startx, starty + 64 * 0)
-	o.chkLarge.setPosition(startx, starty + 64 * 1)
+	o.comboLarge.setPosition(startx, starty + 64 * 1)
 	o.btnBack.setPosition(startx + 8, starty + 64 * 5)
 end
 
